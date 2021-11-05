@@ -1,0 +1,16 @@
+.down {
+  fill: var(--header-text-color);
+  width: 10px;
+  height: 5px;
+  margin-left: 10px;
+}
+
+.foto {
+  width: 32px;
+  height: 32px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}

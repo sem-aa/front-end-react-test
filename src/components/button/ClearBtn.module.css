@@ -1,0 +1,19 @@
+.clearBtn {
+  color: var(--filter-text-color);
+  font-size: 12px;
+  line-height: 1.4;
+  text-transform: uppercase;
+
+  padding: 8px 36px 8px 12px;
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.close {
+  fill: var(--filter-text-color);
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}

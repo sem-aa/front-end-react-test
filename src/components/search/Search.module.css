@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.student {
+  font-family: "Rubik-Bold";
+  font-size: 20px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.search {
+  background-color: #f2f2f2;
+}
+
+.input {
+  margin-left: 12px;
+  background-color: #f2f2f2;
+  width: 499px;
+  height: 32px;
+  border: none;
+}
+
+.icon {
+  position: absolute;
+  right: 14px;
+  width: 12px;
+  height: 12px;
+  fill: var(--filter-text-color);
+}
+
+.flexSearch {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
