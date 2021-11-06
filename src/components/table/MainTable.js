@@ -2,40 +2,63 @@ import style from "./Table.module.css";
 import sprite from "../../img/sprite.svg";
 import { useState, useEffect } from "react";
 import uniqid from "uniqid";
-import axios from "axios";
 import HeadTable from "./HeadTable";
 import Student from "./student/Student";
 import { makeColorScore, makeColorSpeed } from "../../helpers/colors";
+import Search from "../search/Search";
+import { getStudents, findStudentApi } from "../../services/api";
 
-function Head() {
+function MainTable() {
   const [state, setState] = useState([]);
   const [isCheck, setIsCheck] = useState(true);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(20);
-  const [student, setStudent] = useState([]);
+  const [student, setStudent] = useState();
+  const [search, setSearch] = useState();
+  const [sort, setSort] = useState([]);
+  const [sortDir, setSortDir] = useState(1);
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`https://test-task-j.herokuapp.com/data?page=${page}&size=${size}`)
-      .then((response) => {
-        setState({ students: response.data });
-        setLoading(false);
-      });
-  }, [page, size]);
 
-  const students = state.students?.data || [];
+    getStudents(page, size, sort, sortDir).then((response) => {
+      setState(response);
+    });
+
+    setLoading(false);
+  }, [page, size, sort, sortDir]);
 
   const findStudent = (id) =>
-    setStudent(students.find((data) => data.id === id));
-console.log(student);
+    setStudent(state.data.find((data) => data.id === id));
 
+  const sortStudents = (e) => {
+    setSort(e.currentTarget.id);
+    if (sortDir === -1) {
+      setSortDir(1);
+    } else setSortDir(-1);
+  };
+
+  const handleInput = async (e) => {
+      if (e.currentTarget.value) {
+      setSearch(e.currentTarget.value);
+      setLoading(true);
+      findStudentApi(page, size, search).then((response) => {
+        setState(response);
+      });
+      setLoading(false);
+    } else {
+      getStudents(page, size, sort, sortDir).then((response) => {
+        setState(response);
+      });
+    }
+  };
 
   return (
     <div>
+      <Search handleInput={handleInput} />
       <table className={style.table}>
-        <HeadTable isCheck={isCheck} />
+        <HeadTable sortStudents={sortStudents} isCheck={isCheck} />
         {loading ? (
           <tbody>
             <tr>
@@ -44,7 +67,7 @@ console.log(student);
           </tbody>
         ) : (
           <tbody className={style.body}>
-            {students?.map((data) => (
+            {state.data?.map((data) => (
               <tr onClick={() => findStudent(data.id)} key={uniqid()}>
                 <>
                   <th>
@@ -75,7 +98,6 @@ console.log(student);
                       </svg>
                       <span>{data.parents}</span>
                     </div>
-
                     <svg className={style.iconDown}>
                       <use href={sprite + "#icon-down"}></use>
                     </svg>
@@ -89,13 +111,12 @@ console.log(student);
       {student && (
         <Student name={student?.name} id={student?.id} student={student} />
       )}
-
       <div className={style.footer}>
         <p className={style.page}>Rows per page: {size}</p>
         <svg className={style.iconDown}>
           <use href={sprite + "#icon-down"}></use>
         </svg>{" "}
-        <p className={style.page}> 1-10 of {students.length} </p>
+        <p className={style.page}> 1-10 of {state.length} </p>
         <svg className={style.iconLeft}>
           <use href={sprite + "#icon-left"}></use>
         </svg>{" "}
@@ -112,4 +133,4 @@ console.log(student);
   );
 }
 
-export default Head;
+export default MainTable;

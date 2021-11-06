@@ -1,9 +1,16 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://test-task-j.herokuapp.com/data?page=1&size=10';
+const URL = 'https://test-task-j.herokuapp.com/data';
 
-const getStudents = () => axios
-.get()
+export const getStudents = (page, size, sort, sortDir ) =>   
+     axios
+    .get(`${URL}?page=${page}&size=${size}&sortBy=${sort}&sortDir=${sortDir}` )
+    .then(response =>  response.data)
 
 
-export default getStudents
+export const findStudentApi = (page, size, search,) => 
+ axios
+.get(`${URL}?page=${page}&size=${size}&search=${search}`)
+.then(response => response.data)
+
+ 
