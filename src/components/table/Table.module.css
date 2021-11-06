@@ -45,6 +45,7 @@ th {
   width: 10px;
   height: 5px;
   margin-right: 21px;
+  cursor: pointer;
 }
 
 .iconInfo {
@@ -77,6 +78,7 @@ th {
   fill: var(--dark-grey-bg-color);
   width: 10px;
   height: 16px;
+  cursor: pointer;
 }
 
 .iconLeft {
@@ -84,4 +86,5 @@ th {
   fill: var(--dark-grey-bg-color);
   width: 10px;
   height: 16px;
+  cursor: pointer;
 }

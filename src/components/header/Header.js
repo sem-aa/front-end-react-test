@@ -16,7 +16,7 @@ const Header = () => {
           <li>archive</li>
         </ul>
       </nav>
-      <Face/>
+      <Face  />
     </header>
   );
 };

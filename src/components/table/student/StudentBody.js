@@ -4,6 +4,8 @@ import uniqid from "uniqid";
 import { makeColorScore, makeColorSpeed } from "../../../helpers/colors";
 
 const StudentBody = ({ student }) => {
+
+
   return (
     <table className={style.table}>
       <thead className={style.head}>

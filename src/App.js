@@ -7,10 +7,10 @@ import MainTable from "./components/table/MainTable";
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Settings />
+      <Header/>
+      <Settings/>
       <Container>
-        <MainTable />
+        <MainTable/>
       </Container>
     </div>
   );

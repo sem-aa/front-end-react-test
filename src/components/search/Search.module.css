@@ -23,6 +23,7 @@
   width: 499px;
   height: 32px;
   border: none;
+  color: var(--dark-grey-bg-color);
 }
 
 .icon {
