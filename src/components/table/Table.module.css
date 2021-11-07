@@ -43,7 +43,7 @@ th {
 .iconDown {
   fill: var(--filter-text-color);
   width: 10px;
-  height: 5px;
+  height: 10px;
   margin-right: 21px;
   cursor: pointer;
 }
@@ -87,4 +87,33 @@ th {
   width: 10px;
   height: 16px;
   cursor: pointer;
+}
+
+.iconStat {
+  fill: var(--filter-text-color);
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  cursor: pointer;
+  padding: 12px;
+  background-color: #f2f2f2;
+}
+
+.flexIcon {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.iconDownStat {
+  fill: var(--filter-text-color);
+  width: 10px;
+  height: 10px;
+  margin-right: 15px;
+  cursor: pointer;
+  padding: 12px;
+}
+
+.actions {
+  margin-right: 15px;
 }

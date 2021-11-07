@@ -14,6 +14,9 @@ export const COLORS = {
 };
 
 export const makeColorScore = (score) => {
+  if (score === null) {
+    return COLORS.header
+  }
   const nubmer = Number.parseInt(score);
   if (nubmer >= 90) {
     return COLORS.blue;
@@ -25,24 +28,49 @@ export const makeColorScore = (score) => {
 };
 
 export const makeColorSpeed = (speed) => {
-    const normalize = speed?.toLowerCase()
-           let color = '';
-        switch (normalize) {
-          case 'above expected':
-            color = COLORS.blue;
-            break;
-          case 'as expected':
-            color = COLORS.green;
-            break;
-          case 'below expected':
-            color = COLORS.red;
-            break;
-          default:
-            color = COLORS.red;
-        }
-        return color;
 
 
-}
+  const normalize = speed?.toLowerCase();
+  let color = "";
+  switch (normalize) {
+    case "above expected":
+      color = COLORS.blue;
+      break;
+    case "as expected":
+      color = COLORS.green;
+      break;
+    case "below expected":
+      color = COLORS.red;
+      break;
+    default:
+      color = COLORS.red;
+  }
+  return color;
+};
 
+export const isCheckStudent = (isCheck) => {
+  if (isCheck) {
+    const style = {
+      background: "#F2F2F2",
+      outline: "1px solid #C0C0C0",
+      boxShadow: "0px 1px 4px rgba(60, 52, 135, 0.15)",
+      fill: "#323232",
+    };
+    return style;
+  }
+};
 
+export const comparesTime = (testTime, expTime) => {
+  if (testTime  === null) {
+    return COLORS.header;
+  }
+
+  const toSeconds = (time) => {
+    const toTime = time.split(" ").map((item) => item.slice(0, -1));
+    const seconds = +toTime[0] * 60 * 60 + +toTime[1] * 60 + +toTime[2];
+    return seconds;
+  };
+  const color = 
+    toSeconds(testTime) < toSeconds(expTime) ? COLORS.green : COLORS.red;
+  return color;
+};

@@ -1,10 +1,9 @@
 import style from "./StudentBody.module.css";
 import sprite from "../../../img/sprite.svg";
 import uniqid from "uniqid";
-import { makeColorScore, makeColorSpeed } from "../../../helpers/colors";
+import { makeColorScore, makeColorSpeed, comparesTime } from "../../../helpers/colors";
 
 const StudentBody = ({ student }) => {
-
 
   return (
     <table className={style.table}>
@@ -31,36 +30,44 @@ const StudentBody = ({ student }) => {
       </thead>
       <tbody>
         {student.tests?.map(
-          ({ label, score, speed, total, expSpeed, concept, date, abcent }) => (
-            <tr key={uniqid()}>
-              <th className={style.text}>1</th>
-              <th className={style.text} style={{ width: "250px" }}>
-                {label}
-              </th>
-              <th
-                style={{ color: makeColorScore({ score }) }}
-                className={style.text}
-              >
-                {score}
-              </th>
-              <th className={style.text}>{speed}</th>
-              <th className={style.text}>{total}</th>
-              <th className={style.text}>{expSpeed}</th>
-              <th className={style.text}>{concept}</th>
-              <th className={style.text}>
-                <span>{date}</span>
-              </th>
-              <th className={style.text}>
-                <svg className={style.iconSquare}>
-                  {abcent ? (
-                    <use href={sprite + "#icon-square-yes"}></use>
-                  ) : (
-                    <use href={sprite + "#icon-square"}></use>
-                  )}
-                </svg>
-              </th>
-            </tr>
-          )
+          ( { label, score, speed, total, expSpeed, concept, date, abcent }, i) => {
+           
+            return (
+              <tr key={uniqid()}>
+                <th className={style.text}>{i + 1}</th>
+                <th className={style.text} style={{ width: "250px" }}>
+                  {label}
+                </th>
+                <th
+                  style={{ color: makeColorScore(score) }}
+                  className={style.text}
+                >
+                  {score || "NIL"}
+                </th>
+                <th
+                
+                 style={{color: comparesTime(speed, expSpeed)}}
+               className={style.text}>{speed || "NIL"}</th>
+                <th className={style.text}>{total}</th>
+                <th className={style.text}>{expSpeed}</th>
+                <th className={style.text}>{concept}</th>
+                <th className={style.text}>
+                  <span>{date}</span>
+                </th>
+                <th className={style.text}>
+                  <svg className={style.iconSquare}>
+                    {abcent ? (
+                      <use href={sprite + "#icon-square-yes"}></use>
+                    ) : (
+                      <use href={sprite + "#icon-square"}></use>
+                    )}
+                  </svg>
+                </th>
+              </tr>
+            )
+          }
+          
+          
         )}
         <tr >
           <th></th>

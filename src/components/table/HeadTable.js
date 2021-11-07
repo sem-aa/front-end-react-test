@@ -1,17 +1,22 @@
+
 import sprite from '../../img/sprite.svg'
 import style from './Table.module.css'
 
-
-const HeadTable = ({isCheck, sortStudents}) => {
+const HeadTable = ({ sortStudents, selectAll, isCheck}) => {
+  
   return (
     <thead className={style.head}>
       <tr>
         <th>
-          <svg className={style.checkbox}>
+          <svg
+          onClick={selectAll}
+          className={style.checkbox}>
             {isCheck ? (
-              <use href={sprite + "#icon-square"}></use>
-            ) : (
               <use href={sprite + "#icon-square-yes"}></use>
+            ) : (
+
+              <use href={sprite + "#icon-square"}></use>
+              
             )}
           </svg>
         </th>
@@ -45,7 +50,12 @@ const HeadTable = ({isCheck, sortStudents}) => {
           </svg>
         </th>
         <th className={style.parents} style={{ width: "500px" }}>
-          Parents
+          <div className={style.filter}>
+            <span>Parents </span>
+            {isCheck && (<span className={style.actions}>Actions</span>)} 
+          </div>
+          
+          
         </th>
       </tr>
     </thead>

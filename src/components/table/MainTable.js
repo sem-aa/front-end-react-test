@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import uniqid from "uniqid";
 
 import style from "./Table.module.css";
@@ -9,23 +9,25 @@ import Student from "./student/Student";
 import Search from "../search/Search";
 import { getStudents, findStudentApi } from "../../services/api";
 
-function MainTable({ closeStudent}) {
+function MainTable() {
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(5);
-  const [student, setStudent] = useState();
+  const [student, setStudent] = useState(false);
   const [search, setSearch] = useState();
   const [sort, setSort] = useState([]);
   const [sortDir, setSortDir] = useState(1);
   const [indexStudent, setIndexStudent] = useState();
-
+  const [selectAll, setSelectAll] = useState(false)
 
 
   useEffect(() => {
     setLoading(true);
     getStudents(page, size, sort, sortDir).then((response) => {
-      setState(response);
+      setState(response)
+
+
     });
     setLoading(false);
   }, [page, size, sort, sortDir]);
@@ -34,6 +36,12 @@ function MainTable({ closeStudent}) {
     setIndexStudent(Number(e.currentTarget.id));
     setStudent(state.data.find((data) => data.id === id));
   };
+
+  const closeStudent = () => {
+    if(student) {
+      setStudent(false)
+    }
+  }
 
   const sortStudents = (e) => {
     setSort(e.currentTarget.id);
@@ -86,11 +94,22 @@ function MainTable({ closeStudent}) {
     } else setPage(page - 1);
   };
 
+  const choseAllStudents = () => {
+
+    setSelectAll(!selectAll)
+    console.log(selectAll);
+  }
+
+const data =  state.data || "no students"
+
   return (
     <div>
-      <Search handleInput={handleInput} />
+      <Search  data={data} closeStudent={closeStudent}  handleInput={handleInput} />
       <table className={style.table}>
-        <HeadTable sortStudents={sortStudents} />
+        <HeadTable 
+        isCheck={selectAll}
+        selectAll={choseAllStudents}
+        sortStudents={sortStudents} />
         {loading ? (
           <tbody>
             <tr>
@@ -107,10 +126,11 @@ function MainTable({ closeStudent}) {
                     inx={inx}
                     data={data}
                     findStudent={findStudent}
+                    selectAll={selectAll}
                   />
                   {student && inx === indexStudent && (
                       <tr>
-                        <th colspan="7">
+                        <th colSpan="7">
                           {" "}
                           <Student
                             name={student?.name}
