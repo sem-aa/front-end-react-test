@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/sem-aa/front-end-react-test/static/css/main.b861aa61.chunk.css",
+    "main.js": "/sem-aa/front-end-react-test/static/js/main.f3fa27ff.chunk.js",
+    "main.js.map": "/sem-aa/front-end-react-test/static/js/main.f3fa27ff.chunk.js.map",
+    "runtime-main.js": "/sem-aa/front-end-react-test/static/js/runtime-main.835c5785.js",
+    "runtime-main.js.map": "/sem-aa/front-end-react-test/static/js/runtime-main.835c5785.js.map",
+    "static/js/2.58f51f48.chunk.js": "/sem-aa/front-end-react-test/static/js/2.58f51f48.chunk.js",
+    "static/js/2.58f51f48.chunk.js.map": "/sem-aa/front-end-react-test/static/js/2.58f51f48.chunk.js.map",
+    "index.html": "/sem-aa/front-end-react-test/index.html",
+    "static/css/main.b861aa61.chunk.css.map": "/sem-aa/front-end-react-test/static/css/main.b861aa61.chunk.css.map",
+    "static/js/2.58f51f48.chunk.js.LICENSE.txt": "/sem-aa/front-end-react-test/static/js/2.58f51f48.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/sem-aa/front-end-react-test/static/media/Rubik-Regular.da39336c.ttf",
+    "static/media/face.63aba405.png": "/sem-aa/front-end-react-test/static/media/face.63aba405.png",
+    "static/media/sprite.4a71e8d4.svg": "/sem-aa/front-end-react-test/static/media/sprite.4a71e8d4.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.835c5785.js",
+    "static/js/2.58f51f48.chunk.js",
+    "static/css/main.b861aa61.chunk.css",
+    "static/js/main.f3fa27ff.chunk.js"
+  ]
+}
