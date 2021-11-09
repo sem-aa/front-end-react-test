@@ -32,8 +32,9 @@ function MainTable() {
     setLoading(true);
     getStudents(page, size, sort, sortDir).then((response) => {
       setState(response);
+      setLoading(false);
     });
-    setLoading(false);
+    
   }, [page, size, sort, sortDir]);
 
   const findStudent = (e, id) => {
@@ -48,6 +49,7 @@ function MainTable() {
       idStudents[idStudents.length] = data;
     }
     setIsCheck(idStudents);
+
     return idStudents;
   };
 
@@ -72,8 +74,9 @@ function MainTable() {
       setSize(20);
       findStudentApi(page, size, search).then((response) => {
         setState(response);
+        setLoading(false);
       });
-      setLoading(false);
+      
     } else {
       setLoading(true);
       getStudents(page, size, sort, sortDir).then((response) => {
@@ -120,12 +123,13 @@ function MainTable() {
       setMarkStuents(idStudents);
     }
 
-    let arr1 = state.data.slice();
+    let arrStatete = state.data.slice();
+
     let ids = idStudents.map((item) => item.id);
 
     for (let i = 0; i < ids.length; i += 1) {
-      arr1 = arr1.filter((data) => data.id !== ids[i]);
-      setState({ totalPage: page, data: arr1 });
+      arrStatete = arrStatete.filter((data) => data.id !== ids[i]);
+      setState({ totalPage: page, data: arrStatete });
     }
   };
 
@@ -139,7 +143,7 @@ function MainTable() {
     <div>
       {selectAll || idStudents.length > 0 ? (
         <SelectLine
-          choseStudet={idStudents.slice()}
+          choseStudet={isCheck || "no select student"}
           cancelSelection={cancelSelection}
           archiveSelected={archiveSelected}
         />
@@ -159,7 +163,11 @@ function MainTable() {
             sortStudents={sortStudents}
           />
           {loading ? (
-            <h1>Loading...</h1>
+            <tbody>
+              <tr>
+                <th colSpan="7" style={{ color: "#5b5b5b", fontSize: "50px", textAlign: "center"  }}>Loading...</th>
+              </tr>
+            </tbody>
           ) : (
             <tbody className={style.body}>
               {state.data?.map((data, inx) => {

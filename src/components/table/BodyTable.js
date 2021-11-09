@@ -27,9 +27,10 @@ const BodyTable = ({
       >
         <th
           className={style.check}
-          onClick={() => {
+          onClick={(e) => {
             setIsCheck(!isCheck);
-            selectStudents(data);
+            // console.log(isCheck);
+            selectStudents(e, data);
           }}
         >
           <svg className={style.checkbox}>
