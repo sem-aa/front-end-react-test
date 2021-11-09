@@ -5,7 +5,6 @@ import { headers } from "../../helpers/headers";
 
 
 const SelectLine = ({ archiveSelected, cancelSelection, choseStudet }) => {
- console.log(choseStudet);
   return (
     <div className={style.selectLine}>
       <p className={style.text}> {choseStudet.length} Student selected </p>
