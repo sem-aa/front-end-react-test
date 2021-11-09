@@ -1,0 +1,42 @@
+.selectLine {
+  background-color: var(--filter-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 15px 40px 16px 40px;
+}
+
+.text {
+  color: var(--main-bg-color);
+  text-transform: uppercase;
+  font-family: Rubik-Bold;
+  margin-right: 20px;
+}
+
+.icon {
+  fill: var(--main-bg-color);
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.archiveIcon {
+  fill: #424242;
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+}
+
+.archiveText {
+  color: #424242;
+  text-transform: uppercase;
+  font-family: Rubik-Bold;
+  font-size: 14px;
+}

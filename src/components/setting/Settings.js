@@ -1,7 +1,7 @@
 import SetBtn from "../button/SetBtn";
 import ClearBtn from "../button/ClearBtn";
 import style from "./Settings.module.css";
-import id from 'uniqid'
+import id from "uniqid";
 
 const Settings = () => {
   const nameSettings = [
@@ -10,7 +10,7 @@ const Settings = () => {
     "All classes",
     "Av.Score",
     "Av.Speed",
-    "All Classes"
+    "All Classes",
   ];
 
   return (
@@ -18,9 +18,7 @@ const Settings = () => {
       {nameSettings.map((set) => (
         <SetBtn key={id()} nameFilter={set} />
       ))}
-      <ClearBtn
-       clear={"clear all"} 
-       />
+      <ClearBtn clear={"clear all"} />
     </div>
   );
 };

@@ -82,8 +82,8 @@ section {
   outline: none;
 }
 html {
-  /* height: 101%; */
-} /* always display scrollbars */
+  height: 101%;
+}
 
 article,
 aside,

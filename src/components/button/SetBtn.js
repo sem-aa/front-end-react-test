@@ -1,7 +1,7 @@
 import sprite from "../../img/sprite.svg";
 import style from "./SetBtn.module.css";
 
-const SetBtn = ({nameFilter}) => {
+const SetBtn = ({ nameFilter }) => {
   return (
     <div className={style.setBtn}>
       <p>{nameFilter} </p>

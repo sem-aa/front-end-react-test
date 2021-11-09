@@ -1,6 +1,6 @@
 import style from "./Header.module.css";
 import Filter from "../button/Filter";
-import Face from "./face/Face"
+import Face from "./face/Face";
 
 const Header = () => {
   return (
@@ -16,7 +16,7 @@ const Header = () => {
           <li>archive</li>
         </ul>
       </nav>
-      <Face  />
+      <Face />
     </header>
   );
 };

@@ -2,17 +2,9 @@ import ExportBtn from "../button/ExpotrBtn";
 import style from "./Search.module.css";
 import sprite from "../../img/sprite.svg";
 import { CSVLink } from "react-csv";
+import { headers } from "../../helpers/headers";
 
 const Search = ({ handleInput, closeStudent, data }) => {
-  const headers = [
-    { label: "Name", key: "name" },
-    { label: "Id", key: "id" },
-    { label: "Class", key: "class" },
-    { label: "Score", key: "score" },
-    { label: "Speed", key: "speed" },
-    { label: "Parents", key: "parents" },
-  ];
-
   return (
     <div className={style.container}>
       <h2 onClick={closeStudent} className={style.student}>

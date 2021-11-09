@@ -1,7 +1,7 @@
 import sprite from "../../img/sprite.svg";
 import style from "./Filter.module.css";
 
-const Filter = ({nameFilter}) => {
+const Filter = ({ nameFilter }) => {
   return (
     <div className={style.filter}>
       <p>{nameFilter} </p>

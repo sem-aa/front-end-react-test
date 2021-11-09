@@ -15,7 +15,7 @@ export const COLORS = {
 
 export const makeColorScore = (score) => {
   if (score === null) {
-    return COLORS.header
+    return COLORS.header;
   }
   const nubmer = Number.parseInt(score);
   if (nubmer >= 90) {
@@ -28,8 +28,6 @@ export const makeColorScore = (score) => {
 };
 
 export const makeColorSpeed = (speed) => {
-
-
   const normalize = speed?.toLowerCase();
   let color = "";
   switch (normalize) {
@@ -61,7 +59,7 @@ export const isCheckStudent = (isCheck) => {
 };
 
 export const comparesTime = (testTime, expTime) => {
-  if (testTime  === null) {
+  if (testTime === null) {
     return COLORS.header;
   }
 
@@ -70,7 +68,7 @@ export const comparesTime = (testTime, expTime) => {
     const seconds = +toTime[0] * 60 * 60 + +toTime[1] * 60 + +toTime[2];
     return seconds;
   };
-  const color = 
+  const color =
     toSeconds(testTime) < toSeconds(expTime) ? COLORS.green : COLORS.red;
   return color;
 };

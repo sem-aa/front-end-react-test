@@ -5,7 +5,7 @@ const ExportBtn = () => {
   return (
     <div className={style.exportBtn}>
       <svg className={style.export}>
-        <use href={sprite + "#icon-export"} ></use>
+        <use href={sprite + "#icon-export"}></use>
       </svg>
       <p>Export CSV</p>
     </div>

@@ -1,0 +1,45 @@
+.archive {
+  background-color: #f9f9f9;
+  color: var(--filter-text-color);
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.check {
+  width: 10px;
+}
+
+.checkbox {
+  fill: var(--header-text-color);
+  width: 10px;
+  height: 10px;
+}
+
+.iconDown {
+  fill: var(--filter-text-color);
+  width: 10px;
+  height: 10px;
+  margin-right: 21px;
+  cursor: pointer;
+}
+
+.iconInfo {
+  fill: var(--filter-text-color);
+  width: 13px;
+  height: 13px;
+  margin-right: 7px;
+}
+
+.iconDownStat {
+  fill: var(--filter-text-color);
+  width: 10px;
+  height: 10px;
+  margin-right: 15px;
+  cursor: pointer;
+  padding: 12px;
+}

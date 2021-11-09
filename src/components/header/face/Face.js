@@ -1,5 +1,5 @@
 import face from "../../../img/face.png";
-import sprite from "../../../img/sprite.svg"
+import sprite from "../../../img/sprite.svg";
 import style from "./Face.module.css";
 
 const Foto = () => {

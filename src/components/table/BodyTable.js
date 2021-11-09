@@ -1,24 +1,37 @@
+import React, { useState } from "react";
 import style from "./Table.module.css";
 import sprite from "../../img/sprite.svg";
-// import uniqid from "uniqid";
+import uniqid from "uniqid";
 
 import {
   makeColorScore,
   makeColorSpeed,
   isCheckStudent,
 } from "../../helpers/colors";
-import { useState } from "react";
 
-const BodyTable = ({ data, findStudent, inx, selectAll }) => {
+const BodyTable = ({
+  data,
+  findStudent,
+  inx,
+  selectAll,
+  selectStudents,
+  cancelSelect,
+}) => {
   const [isCheck, setIsCheck] = useState(false);
 
   return (
     <>
       <tr
-        style={isCheckStudent(isCheck || selectAll)}
-        // key={uniqid()}
+        style={isCheckStudent(cancelSelect && (isCheck || selectAll))}
+        key={uniqid()}
       >
-        <th onClick={() => setIsCheck(!isCheck)}>
+        <th
+          className={style.check}
+          onClick={() => {
+            setIsCheck(!isCheck);
+            selectStudents(data);
+          }}
+        >
           <svg className={style.checkbox}>
             {isCheck || selectAll ? (
               <use fill="#323232" href={sprite + "#icon-square-yes"}></use>

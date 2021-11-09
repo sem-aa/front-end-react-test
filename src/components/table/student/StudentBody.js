@@ -1,10 +1,13 @@
 import style from "./StudentBody.module.css";
 import sprite from "../../../img/sprite.svg";
 import uniqid from "uniqid";
-import { makeColorScore, makeColorSpeed, comparesTime } from "../../../helpers/colors";
+import {
+  makeColorScore,
+  makeColorSpeed,
+  comparesTime,
+} from "../../../helpers/colors";
 
 const StudentBody = ({ student }) => {
-
   return (
     <table className={style.table}>
       <thead className={style.head}>
@@ -30,8 +33,10 @@ const StudentBody = ({ student }) => {
       </thead>
       <tbody>
         {student.tests?.map(
-          ( { label, score, speed, total, expSpeed, concept, date, abcent }, i) => {
-           
+          (
+            { label, score, speed, total, expSpeed, concept, date, abcent },
+            i
+          ) => {
             return (
               <tr key={uniqid()}>
                 <th className={style.text}>{i + 1}</th>
@@ -45,9 +50,11 @@ const StudentBody = ({ student }) => {
                   {score || "NIL"}
                 </th>
                 <th
-                
-                 style={{color: comparesTime(speed, expSpeed)}}
-               className={style.text}>{speed || "NIL"}</th>
+                  style={{ color: comparesTime(speed, expSpeed) }}
+                  className={style.text}
+                >
+                  {speed || "NIL"}
+                </th>
                 <th className={style.text}>{total}</th>
                 <th className={style.text}>{expSpeed}</th>
                 <th className={style.text}>{concept}</th>
@@ -64,16 +71,24 @@ const StudentBody = ({ student }) => {
                   </svg>
                 </th>
               </tr>
-            )
+            );
           }
-          
-          
         )}
-        <tr >
+        <tr>
           <th></th>
           <th className={style.results}>average</th>
-          <th className={style.results} style={{color: makeColorScore(student.score)}}>{student.score}</th>
-          <th className={style.results} style={{color: makeColorSpeed(student.speed)}}>{student.speed}</th>
+          <th
+            className={style.results}
+            style={{ color: makeColorScore(student.score) }}
+          >
+            {student.score}
+          </th>
+          <th
+            className={style.results}
+            style={{ color: makeColorSpeed(student.speed) }}
+          >
+            {student.speed}
+          </th>
         </tr>
       </tbody>
     </table>
