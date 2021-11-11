@@ -5,12 +5,16 @@ import { headers } from "../../helpers/headers";
 
 
 const SelectLine = ({ archiveSelected, cancelSelection, choseStudet }) => {
+const clickArchive = () => archiveSelected()
+const clickCancel = () => cancelSelection()
+
+
   return (
     <div className={style.selectLine}>
       <p className={style.text}> {choseStudet.length} Student selected </p>
 
       <div className={style.flex}>
-        <div onClick={() => cancelSelection()} className={style.flex}>
+        <div onClick={clickCancel} className={style.flex}>
           <svg className={style.icon}>
             <use href={sprite + "#icon-close"}></use>
           </svg>
@@ -26,7 +30,7 @@ const SelectLine = ({ archiveSelected, cancelSelection, choseStudet }) => {
           </div>
         </CSVLink>
 
-        <div onClick={() => archiveSelected()} className={style.flex}>
+        <div onClick={clickArchive} className={style.flex}>
           <svg className={style.archiveIcon}>
             <use href={sprite + "#icon-archive"}></use>
           </svg>

@@ -3,6 +3,7 @@ import uniqid from "uniqid";
 
 import style from "./Table.module.css";
 import sprite from "../../img/sprite.svg";
+
 import HeadTable from "./HeadTable";
 import BodyTable from "./BodyTable";
 import Student from "./student/Student";
@@ -11,8 +12,6 @@ import { getStudents, findStudentApi } from "../../services/api";
 import SelectLine from "../search/SelectLine";
 import Container from "../container/Container";
 import Archive from "./Archive";
-
-let idStudents = [];
 
 function MainTable() {
   const [state, setState] = useState([]);
@@ -34,7 +33,6 @@ function MainTable() {
       setState(response);
       setLoading(false);
     });
-    
   }, [page, size, sort, sortDir]);
 
   const findStudent = (e, id) => {
@@ -42,15 +40,13 @@ function MainTable() {
     setStudent(state.data.find((data) => data.id === id));
   };
 
-  const selectStudents = (data) => {
-    if (idStudents.indexOf(data) !== -1) {
-      idStudents.splice(idStudents.indexOf(data), 1);
-    } else {
-      idStudents[idStudents.length] = data;
-    }
-    setIsCheck(idStudents);
-
-    return idStudents;
+  const selectStudents = (studentId) => (data) => {
+    setIsCheck((prev) => {
+      const index = prev.findIndex(({ id }) => id === studentId);
+      if (index >= 0) {
+        return prev.filter(({ id }) => id !== studentId);
+      } else return [...prev, data];
+    });
   };
 
   const closeStudent = () => {
@@ -76,7 +72,6 @@ function MainTable() {
         setState(response);
         setLoading(false);
       });
-      
     } else {
       setLoading(true);
       getStudents(page, size, sort, sortDir).then((response) => {
@@ -95,7 +90,6 @@ function MainTable() {
   const incrementPage = () => {
     const currentStudents = size * page;
     const maxStudents = state.totalPages * state.data.length;
-
     if (currentStudents >= maxStudents) {
       setPage(1);
     } else {
@@ -120,28 +114,26 @@ function MainTable() {
       setMarkStuents(state.data);
       setState({ totalPage: page, data: [] });
     } else {
-      setMarkStuents(idStudents);
+      setMarkStuents(isCheck);
     }
 
     let arrStatete = state.data.slice();
-
-    let ids = idStudents.map((item) => item.id);
-
+    let ids = isCheck.map((item) => item.id);
     for (let i = 0; i < ids.length; i += 1) {
       arrStatete = arrStatete.filter((data) => data.id !== ids[i]);
       setState({ totalPage: page, data: arrStatete });
     }
+    setIsCheck([]);
   };
 
   const cancelSelection = () => {
     setIsCheck(false);
   };
-
   const data = state.data || "no students";
 
   return (
     <div>
-      {selectAll || idStudents.length > 0 ? (
+      {selectAll || isCheck.length ? (
         <SelectLine
           choseStudet={isCheck || "no select student"}
           cancelSelection={cancelSelection}
@@ -165,7 +157,16 @@ function MainTable() {
           {loading ? (
             <tbody>
               <tr>
-                <th colSpan="7" style={{ color: "#5b5b5b", fontSize: "50px", textAlign: "center"  }}>Loading...</th>
+                <th
+                  colSpan="7"
+                  style={{
+                    color: "#5b5b5b",
+                    fontSize: "50px",
+                    textAlign: "center",
+                  }}
+                >
+                  Loading...
+                </th>
               </tr>
             </tbody>
           ) : (
@@ -174,12 +175,12 @@ function MainTable() {
                 return (
                   <Fragment key={uniqid()}>
                     <BodyTable
+                      isCheck={isCheck.some(({ id }) => id === data.id)}
                       inx={inx}
                       data={data}
                       findStudent={findStudent}
                       selectAll={selectAll}
-                      selectStudents={selectStudents}
-                      cancelSelect={isCheck}
+                      selectStudents={selectStudents(data.id)}
                     ></BodyTable>
                     {student && inx === indexStudent && (
                       <tr>
@@ -217,7 +218,6 @@ function MainTable() {
             </tbody>
           )}
         </table>
-
         <div className={style.footer}>
           <p className={style.page}>Rows per page: {size}</p>
           <svg onClick={setRowsPage} className={style.iconDown}>

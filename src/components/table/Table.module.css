@@ -27,6 +27,7 @@ tbody tr:nth-child(even) {
 }
 
 .checkbox {
+  /* pointer-events: none; */
   fill: var(--header-text-color);
   width: 10px;
   height: 10px;
